@@ -20,6 +20,8 @@ function setup() {
   time_incial = Date.now();
 }
 
+let frase_vel_f = 0;
+
 function draw() {
   let coeffStaticFriction = sliderC.value();
   let g = 9.807;
@@ -52,7 +54,7 @@ function draw() {
     }
   }
   
-  print("f1: " + f1.x + " , fa: " + fa.x + ", maxFA: " + maxFa.x);
+  //print("f1: " + f1.x + " , fa: " + fa.x + ", maxFA: " + maxFa.x);
 
   sum = createVector(f1.x + fa.x,0);
   obj.applyForce(sum);
@@ -136,7 +138,6 @@ function drawForce(forca,objeto, coef){
 
 function scoreboard(objeto){
   let frase = "";
-  let frase_vel_f = "";
 
   if(objeto.acc.x < 0){
     print("acc negativa");
@@ -148,14 +149,15 @@ function scoreboard(objeto){
   if(!objeto.edges()){
     //frase_time = str((sqrt(2*(objeto.pos.x / 4) / (1000 * sqrt((objeto.acc.x)**2)))).toFixed(2));
     frase_time = str(((Date.now() - time_incial) / 1000).toFixed(2));
+    if(((obj.pos.x / 4).toFixed(2)) >= 99.69 && i == 0 &objeto.vel.x > 0){44
+      frase_vel_f = str((objeto.vel.x * 15.81).toFixed(2));
+      console.log(frase_vel_f);
+    }
   }else{
     i++;
     //frase_vel_f = str((1000 * sqrt((objeto.acc.x)**2 + (objeto.acc.y)**2) * parseFloat(frase_time)).toFixed(2)) + " m/s";
-    if(i == 1){
-      frase_vel_f = str((Date.now() - time_incial).toFixed(2));//CONECRATAR
-    }
   }
-
+  console.log(frase_vel_f);
   frase = "time: " + frase_time + " s\nacc: " + frase_acc + " m/s²\nx: " + str((obj.pos.x / 4).toFixed(2)) + " m\nvel: " + str((objeto.vel.x * 15.81).toFixed(2)) + " m/s\nvel_f: " + frase_vel_f;
 
   return frase;
