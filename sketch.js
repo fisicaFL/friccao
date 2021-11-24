@@ -101,7 +101,19 @@ function draw() {
   let f1 = createVector(fx,-fy);//newtons
   let peso = createVector(0, obj.mass * g);
   let normal = createVector(0, -(obj.mass * g - fy));
+  var alfaMax = Math.asin(peso.y/((parseFloat(sqrt(f1.x** 2 + f1.y** 2))).toFixed(1)));
+  alfaMax = parseFloat(alfaMax * 180 / Math.PI);
   
+  if(normal.y > 0){
+    sliderA.remove();
+    sliderA = createSlider(0, 90, alfaMax, 1);
+    sliderA.position((windowWidth - width) / 2 + 210, (windowHeight - height) / 2 + 100);
+    sliderA.style('width', '150px');
+    normal.y = 0;
+  }
+
+  console.log(alfaMax);
+
   let maxFa = createVector(abs(normal.y) * coeffStaticFriction,0);
   let fa = createVector(0,0);//newtons
 
@@ -116,7 +128,7 @@ function draw() {
   }
 
   sum = createVector((f1.x + fa.x + peso.x + normal.x).toFixed(10),f1.y + fa.y + peso.y + normal.y);
-  print(sum.x);
+  //print(sum.x);
   obj.applyForce(sum);
   
 
@@ -260,7 +272,7 @@ function scoreboard(objeto){
     frase_time = str(((Date.now() - time_incial) / 1000).toFixed(2));
     if(((obj.pos.x / 4).toFixed(2)) >= 99.69 && i == 0 &objeto.vel.x > 0){44
       frase_vel_f = str((objeto.vel.x * 15.81).toFixed(2)) + " m/s";
-      console.log(frase_vel_f);
+      //console.log(frase_vel_f);
     }
   }else{
     i++;
