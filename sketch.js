@@ -78,11 +78,11 @@ function draw() {
   if(start == true){
     let frase = scoreboard(obj);
   }else{
-    frase = "time: " + 0 + " s\nacc: " + 0 + " m/s²\nx: 0 m\nvel: 0 m/s\nvel_f: 0 m/s";
+    frase = "tempo: " + 0 + " s\nacc: " + 0 + " m/s²\nx: 0 m\nvel: 0 m/s\nvel_f: 0 m/s";
   }
   
   textSize(22);
-  text(frase, 10 ,30);
+  text(frase, 30 ,30);
   textSize(20);
   text("100m", 170 ,330);
 
