@@ -1,11 +1,10 @@
+//CODIGO CRIADO POR FRANCISCO LARANJO
 let obj;
 let sliderF;
 let sliderC;
 let img;
 let start = false;
 let time_incial;
-//https://physics.bu.edu/~duffy/HTML5/force_motion_1D_friction.html
-//https://ophysics.com/f2.html
 var cnv = 0;
 
 function setup() {
@@ -63,7 +62,7 @@ let frase_vel_f = "m/s";
 function test(objeto){
   textSize(20);
   var txt = "dPrevistos: time: " + str((sqrt(200/(1000 * sqrt((objeto.acc.x)**2)))).toFixed(2)) + " vel_f: " + str(((1000 * sqrt((objeto.acc.x)**2)) * (sqrt(200/(1000 * sqrt((objeto.acc.x)**2))))).toFixed(2)); 
-  //text(txt, 0 ,395);
+  text(txt, 0 ,395);
 }
 
 function draw() {
@@ -112,7 +111,6 @@ function draw() {
     normal.y = 0;
   }
 
-  console.log(alfaMax);
 
   let maxFa = createVector(abs(normal.y) * coeffStaticFriction,0);
   let fa = createVector(0,0);//newtons
@@ -127,11 +125,12 @@ function draw() {
     }
   }
 
-  sum = createVector((f1.x + fa.x + peso.x + normal.x).toFixed(10),f1.y + fa.y + peso.y + normal.y);
+  //sum = createVector((f1.x + fa.x + peso.x + normal.x).toFixed(10),f1.y + fa.y + peso.y + normal.y);
+  sum = createVector((f1.x + fa.x + peso.x + normal.x).toFixed(10),0);
   //print(sum.x);
   obj.applyForce(sum);
   
-
+  
 
   fill(color("#468fea"));
 
@@ -140,7 +139,6 @@ function draw() {
     obj.show();
     obj.edges();
   }
-  
 
   img.resize(44,44);
   image(img, obj.pos.x, obj.pos.y);
@@ -150,12 +148,12 @@ function draw() {
   drawForce(f1, obj, 1);
   stroke("red");
   drawForce(fa, obj, 1);
-  stroke("black");
-  drawForce(sum, obj, 1);
   stroke("green");
   drawForce(peso, obj, 1);
   stroke("yellow");
   drawForce(normal, obj, 1);
+  stroke("black");
+  drawForce(sum, obj, 1);
 
   //line(obj.pos.x + obj.r, obj.pos.y + obj.r, obj.pos.x + obj.r, obj.pos.y + obj.r + peso.y * 2);
   //stroke("black");
@@ -172,7 +170,7 @@ function draw() {
   
   text("Força = " + valforca + " N", 240 ,45);
   textSize(16);
-  text("C.e de fricção = " + coeffStaticFriction + "", 220 ,95);
+  text("C. e/c de fricção = " + coeffStaticFriction + "", 220 ,95);
   textSize(16);
   text("Alfa = " + alfaGRAUS + "º", 245 ,135);
   textSize(16);
@@ -266,16 +264,16 @@ function scoreboard(objeto){
   }else{
     frase_acc = str((1000 * sqrt((objeto.acc.x)**2 + (objeto.acc.y)**2)).toFixed(2));
   }
-  let i = 0;
+  let secondtime = 0;
   if(!objeto.edges()){
     //frase_time = str((sqrt(2*(objeto.pos.x / 4) / (1000 * sqrt((objeto.acc.x)**2)))).toFixed(2));
     frase_time = str(((Date.now() - time_incial) / 1000).toFixed(2));
-    if(((obj.pos.x / 4).toFixed(2)) >= 99.69 && i == 0 &objeto.vel.x > 0){44
+    if(((obj.pos.x / 4).toFixed(2)) >= 99.1 && secondtime == 0 &objeto.vel.x > 0){44
       frase_vel_f = str((objeto.vel.x * 15.81).toFixed(2)) + " m/s";
-      //console.log(frase_vel_f);
+      console.log(frase_vel_f);
     }
   }else{
-    i++;
+    secondtime++;
     //frase_vel_f = str((1000 * sqrt((objeto.acc.x)**2 + (objeto.acc.y)**2) * parseFloat(frase_time)).toFixed(2)) + " m/s";
   }
   //console.log(frase_vel_f);
